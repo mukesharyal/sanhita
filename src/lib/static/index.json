@@ -1,0 +1,168 @@
+[
+    {
+        "name": "Constitution of Nepal",
+        "description": "The supreme law of Nepal establishing the fundamental principles of governance, constitutional structure, rights and duties of citizens, distribution of state power across federal, provincial, and local levels, constitutional bodies, amendment procedures, and transitional arrangements following the adoption of the federal democratic republican system.",
+        "contents": [
+            {
+                "title": "Preliminary",
+                "pages": [8, 9],
+                "description": "Defines the foundational characteristics of the Nepali state, including sovereignty, state authority, constitutional supremacy, national symbols, citizenship principles, and the basic nature of Nepal as a federal democratic republic."
+            },
+            {
+                "title": "Citizenship",
+                "pages": [10, 12],
+                "description": "Specifies the types of Nepali citizenship, eligibility criteria, acquisition and termination of citizenship, rights of citizens, and provisions related to citizenship by descent, naturalization, and gender equality in citizenship matters."
+            },
+            {
+                "title": "Fundamental Rights and Duties",
+                "pages": [13, 29],
+                "description": "Enumerates enforceable fundamental rights such as equality, freedom, justice, social security, education, health, and constitutional remedies, along with the fundamental duties of citizens toward the nation."
+            },
+            {
+                "title": "Directive Principles, Policies and Obligations of the State",
+                "pages": [30, 44],
+                "description": "Outlines non-justiciable guiding principles and state policies aimed at social justice, economic development, inclusion, good governance, environmental protection, and national interest."
+            },
+            {
+                "title": "Structure of State and Distribution of State Power",
+                "pages": [45, 49],
+                "description": "Defines Nepal’s federal structure, the division of powers among federation, states, and local levels, and principles governing cooperative federalism and jurisdictional authority."
+            },
+            {
+                "title": "President and Vice-President",
+                "pages": [50, 53],
+                "description": "Details the roles, powers, election procedures, terms, and constitutional responsibilities of the President and Vice-President as ceremonial heads of state."
+            },
+            {
+                "title": "Federal Executive",
+                "pages": [54, 58],
+                "description": "Covers the formation, powers, and functions of the Council of Ministers, the Prime Minister, executive accountability, and federal governance operations."
+            },
+            {
+                "title": "Federal Legislature",
+                "pages": [59, 74],
+                "description": "Describes the composition, powers, privileges, and functioning of the Federal Parliament, including the House of Representatives and National Assembly."
+            },
+            {
+                "title": "Federal Legislative Procedures",
+                "pages": [75, 79],
+                "description": "Explains the legislative process at the federal level, including bill introduction, passage, assent, joint sittings, and parliamentary procedures."
+            },
+            {
+                "title": "Federal Financial Procedures",
+                "pages": [80, 84],
+                "description": "Regulates federal budgeting, taxation authority, public finance management, audit requirements, and expenditure authorization."
+            },
+            {
+                "title": "Judiciary",
+                "pages": [85, 103],
+                "description": "Establishes the judicial system, including the Supreme Court, High Courts, and District Courts, judicial independence, jurisdiction, and constitutional review."
+            },
+            {
+                "title": "Attorney General",
+                "pages": [104, 107],
+                "description": "Defines the appointment, powers, duties, and advisory role of the Attorney General as the chief legal advisor to the Government of Nepal."
+            },
+            {
+                "title": "State Executive",
+                "pages": [108, 114],
+                "description": "Specifies the structure and authority of provincial executives, including the Chief Minister, Council of Ministers, and their responsibilities."
+            },
+            {
+                "title": "State Legislature",
+                "pages": [115, 125],
+                "description": "Details the composition, powers, and functioning of Provincial Assemblies and their legislative authority."
+            },
+            {
+                "title": "State Legislative Procedures",
+                "pages": [126, 129],
+                "description": "Explains legislative processes within provinces, including bill procedures, assent, and internal assembly operations."
+            },
+            {
+                "title": "State Financial Procedures",
+                "pages": [130, 133],
+                "description": "Regulates provincial-level public finance, taxation powers, budget formulation, and expenditure control."
+            },
+            {
+                "title": "Local Executive",
+                "pages": [134, 142],
+                "description": "Defines the structure, authority, and responsibilities of local governments, including village and municipal executives."
+            },
+            {
+                "title": "Local Financial Procedures",
+                "pages": [143, 143],
+                "description": "Specifies financial management, revenue authority, and budgeting processes at the local government level."
+            },
+            {
+                "title": "Interrelations between Federation, State and Local Level",
+                "pages": [144, 147],
+                "description": "Addresses coordination, cooperation, dispute resolution, and power-sharing mechanisms among federal, provincial, and local governments."
+            },
+            {
+                "title": "Commission for the Investigation of Abuse of Authority",
+                "pages": [148, 151],
+                "description": "Establishes the anti-corruption constitutional body responsible for investigating misuse of public office and authority."
+            },
+            {
+                "title": "Auditor General",
+                "pages": [152, 154],
+                "description": "Defines the role of the Auditor General in auditing public accounts, ensuring financial accountability and transparency."
+            },
+            {
+                "title": "Public Service Commission",
+                "pages": [155, 159],
+                "description": "Covers the constitutional body responsible for merit-based recruitment, examinations, and regulation of public service appointments."
+            },
+            {
+                "title": "Election Commission",
+                "pages": [160, 162],
+                "description": "Establishes the authority responsible for conducting free, fair, and impartial elections and referendums."
+            },
+            {
+                "title": "National Human Rights Commission",
+                "pages": [163, 167],
+                "description": "Defines the mandate to protect, promote, and monitor human rights and investigate violations."
+            },
+            {
+                "title": "National Natural Resources and Fiscal Commission",
+                "pages": [168, 171],
+                "description": "Regulates equitable distribution of natural resources, fiscal transfers, and revenue-sharing among government levels."
+            },
+            {
+                "title": "Other Commissions",
+                "pages": [172, 184],
+                "description": "Establishes additional constitutional commissions addressing inclusion, social justice, and protection of marginalized groups."
+            },
+            {
+                "title": "Provisions Relating to National Security",
+                "pages": [185, 187],
+                "description": "Covers national security policy, control of armed forces, and mechanisms for safeguarding sovereignty and territorial integrity."
+            },
+            {
+                "title": "Provisions Relating to Political Parties",
+                "pages": [188, 190],
+                "description": "Regulates formation, registration, conduct, and constitutional compliance of political parties."
+            },
+            {
+                "title": "Emergency Power",
+                "pages": [191, 193],
+                "description": "Defines conditions, procedures, and limitations for declaring a state of emergency and suspending certain rights."
+            },
+            {
+                "title": "Amendment to the Constitution",
+                "pages": [194, 195],
+                "description": "Specifies the procedures, requirements, and limitations for amending the Constitution of Nepal."
+            },
+            {
+                "title": "Miscellaneous",
+                "pages": [196, 206],
+                "description": "Contains supplementary constitutional provisions, interpretations, and administrative matters not covered elsewhere."
+            },
+            {
+                "title": "Transitional Provisions",
+                "pages": [207, 217],
+                "description": "Provides temporary arrangements for institutional transition, continuity of laws, and implementation following constitutional adoption."
+            }
+        ]
+    }
+]
