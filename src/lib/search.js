@@ -1,28 +1,75 @@
 import { create, insert, searchVector } from '@orama/orama';
 import { embedText } from './embed.js';
-import embeddingsData from './static/constitution.json';
 
 let db = null;
+let dbPromise = null;
+let sourceStatus = 'idle';
+let sourceProgress = 0;
 
-async function getDatabase() {
+async function loadEmbeddingsData() {
+    const module = await import('./static/embeddings.json');
+    return module.default || [];
+}
+
+function reportSourceStatus(onStatus, state, message, progress = sourceProgress) {
+    sourceStatus = state;
+    sourceProgress = progress;
+    if (onStatus) {
+        onStatus({ state, message, progress });
+    }
+}
+
+export function getSourceStatus() {
+    return { state: sourceStatus, progress: sourceProgress };
+}
+
+async function getDatabase(onStatus) {
     if (db) return db;
+    if (dbPromise) return dbPromise;
 
-    db = await create({
-        schema: {
-            text: 'string',
-            embedding: 'vector[384]',
-        },
+    dbPromise = (async () => {
+        reportSourceStatus(onStatus, 'loading', 'Loading legal source embeddings...', 10);
+        const embeddingsData = await loadEmbeddingsData();
+
+        reportSourceStatus(onStatus, 'loading', 'Building searchable source index...', 25);
+        const createdDb = await create({
+            schema: {
+                text: 'string',
+                embedding: 'vector[384]',
+                metadata: 'string',
+            },
+        });
+
+        const total = embeddingsData.length || 1;
+        for (let i = 0; i < embeddingsData.length; i += 1) {
+            const entry = embeddingsData[i];
+            await insert(createdDb, {
+                text: entry.text,
+                embedding: entry.embedding,
+                metadata: JSON.stringify(entry.metadata),
+            });
+
+            if ((i + 1) % 200 === 0 || i === embeddingsData.length - 1) {
+                const progress = 25 + Math.round(((i + 1) / total) * 75);
+                reportSourceStatus(onStatus, 'loading', `Preparing source index (${i + 1}/${total})...`, progress);
+                await new Promise((resolve) => setTimeout(resolve, 0));
+            }
+        }
+
+        db = createdDb;
+        reportSourceStatus(onStatus, 'ready', 'Legal source index ready.', 100);
+        return createdDb;
+    })().catch((error) => {
+        reportSourceStatus(onStatus, 'error', 'Failed to load legal source index.', sourceProgress);
+        dbPromise = null;
+        throw error;
     });
 
-    // Insert all documents from your embeddings.json
-    for (const entry of embeddingsData) {
-        await insert(db, {
-            text: entry.text,
-            embedding: entry.embedding,
-        });
-    }
+    return dbPromise;
+}
 
-    return db;
+export async function preloadSearchIndex(onStatus) {
+    return getDatabase(onStatus);
 }
 
 export async function searchWithQueries(queries) {

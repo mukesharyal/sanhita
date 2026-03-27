@@ -1,12 +1,36 @@
 import { pipeline } from '@xenova/transformers';
 
 let embedder = null;
+let embedderPromise = null;
+let embedderStatus = 'idle';
 
 async function getEmbedder() {
-    if (!embedder) {
-        embedder = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
+    if (embedder) return embedder;
+
+    if (!embedderPromise) {
+        embedderStatus = 'loading';
+        embedderPromise = pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2')
+            .then((instance) => {
+                embedder = instance;
+                embedderStatus = 'ready';
+                return instance;
+            })
+            .catch((error) => {
+                embedderStatus = 'error';
+                embedderPromise = null;
+                throw error;
+            });
     }
-    return embedder;
+
+    return embedderPromise;
+}
+
+export function getEmbedderStatus() {
+    return embedderStatus;
+}
+
+export async function preloadEmbedder() {
+    return getEmbedder();
 }
 
 export async function embedText(text) {

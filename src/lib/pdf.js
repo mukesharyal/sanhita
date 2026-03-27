@@ -10,6 +10,12 @@ export async function loadPDF() {
     return await pdfjsLib.getDocument(pdfUrl).promise;
 }
 
+export async function loadPDFByFile(fileName) {
+    const safeFile = (fileName || "constitution.pdf").toString();
+    const pdfUrl = new URL(`../lib/static/${safeFile}`, import.meta.url).toString();
+    return await pdfjsLib.getDocument(pdfUrl).promise;
+}
+
 export async function extractPages(pdfDoc, pageRanges) {
     let fullText = "";
     for (const [start, end] of pageRanges) {

@@ -1,168 +1,170 @@
 [
     {
         "name": "Constitution of Nepal",
+        "file": "constitution.pdf",
         "description": "The supreme law of Nepal establishing the fundamental principles of governance, constitutional structure, rights and duties of citizens, distribution of state power across federal, provincial, and local levels, constitutional bodies, amendment procedures, and transitional arrangements following the adoption of the federal democratic republican system.",
         "contents": [
-            {
-                "title": "Preliminary",
-                "pages": [8, 9],
-                "description": "Defines the foundational characteristics of the Nepali state, including sovereignty, state authority, constitutional supremacy, national symbols, citizenship principles, and the basic nature of Nepal as a federal democratic republic."
-            },
-            {
-                "title": "Citizenship",
-                "pages": [10, 12],
-                "description": "Specifies the types of Nepali citizenship, eligibility criteria, acquisition and termination of citizenship, rights of citizens, and provisions related to citizenship by descent, naturalization, and gender equality in citizenship matters."
-            },
-            {
-                "title": "Fundamental Rights and Duties",
-                "pages": [13, 29],
-                "description": "Enumerates enforceable fundamental rights such as equality, freedom, justice, social security, education, health, and constitutional remedies, along with the fundamental duties of citizens toward the nation."
-            },
-            {
-                "title": "Directive Principles, Policies and Obligations of the State",
-                "pages": [30, 44],
-                "description": "Outlines non-justiciable guiding principles and state policies aimed at social justice, economic development, inclusion, good governance, environmental protection, and national interest."
-            },
-            {
-                "title": "Structure of State and Distribution of State Power",
-                "pages": [45, 49],
-                "description": "Defines Nepal’s federal structure, the division of powers among federation, states, and local levels, and principles governing cooperative federalism and jurisdictional authority."
-            },
-            {
-                "title": "President and Vice-President",
-                "pages": [50, 53],
-                "description": "Details the roles, powers, election procedures, terms, and constitutional responsibilities of the President and Vice-President as ceremonial heads of state."
-            },
-            {
-                "title": "Federal Executive",
-                "pages": [54, 58],
-                "description": "Covers the formation, powers, and functions of the Council of Ministers, the Prime Minister, executive accountability, and federal governance operations."
-            },
-            {
-                "title": "Federal Legislature",
-                "pages": [59, 74],
-                "description": "Describes the composition, powers, privileges, and functioning of the Federal Parliament, including the House of Representatives and National Assembly."
-            },
-            {
-                "title": "Federal Legislative Procedures",
-                "pages": [75, 79],
-                "description": "Explains the legislative process at the federal level, including bill introduction, passage, assent, joint sittings, and parliamentary procedures."
-            },
-            {
-                "title": "Federal Financial Procedures",
-                "pages": [80, 84],
-                "description": "Regulates federal budgeting, taxation authority, public finance management, audit requirements, and expenditure authorization."
-            },
-            {
-                "title": "Judiciary",
-                "pages": [85, 103],
-                "description": "Establishes the judicial system, including the Supreme Court, High Courts, and District Courts, judicial independence, jurisdiction, and constitutional review."
-            },
-            {
-                "title": "Attorney General",
-                "pages": [104, 107],
-                "description": "Defines the appointment, powers, duties, and advisory role of the Attorney General as the chief legal advisor to the Government of Nepal."
-            },
-            {
-                "title": "State Executive",
-                "pages": [108, 114],
-                "description": "Specifies the structure and authority of provincial executives, including the Chief Minister, Council of Ministers, and their responsibilities."
-            },
-            {
-                "title": "State Legislature",
-                "pages": [115, 125],
-                "description": "Details the composition, powers, and functioning of Provincial Assemblies and their legislative authority."
-            },
-            {
-                "title": "State Legislative Procedures",
-                "pages": [126, 129],
-                "description": "Explains legislative processes within provinces, including bill procedures, assent, and internal assembly operations."
-            },
-            {
-                "title": "State Financial Procedures",
-                "pages": [130, 133],
-                "description": "Regulates provincial-level public finance, taxation powers, budget formulation, and expenditure control."
-            },
-            {
-                "title": "Local Executive",
-                "pages": [134, 142],
-                "description": "Defines the structure, authority, and responsibilities of local governments, including village and municipal executives."
-            },
-            {
-                "title": "Local Financial Procedures",
-                "pages": [143, 143],
-                "description": "Specifies financial management, revenue authority, and budgeting processes at the local government level."
-            },
-            {
-                "title": "Interrelations between Federation, State and Local Level",
-                "pages": [144, 147],
-                "description": "Addresses coordination, cooperation, dispute resolution, and power-sharing mechanisms among federal, provincial, and local governments."
-            },
-            {
-                "title": "Commission for the Investigation of Abuse of Authority",
-                "pages": [148, 151],
-                "description": "Establishes the anti-corruption constitutional body responsible for investigating misuse of public office and authority."
-            },
-            {
-                "title": "Auditor General",
-                "pages": [152, 154],
-                "description": "Defines the role of the Auditor General in auditing public accounts, ensuring financial accountability and transparency."
-            },
-            {
-                "title": "Public Service Commission",
-                "pages": [155, 159],
-                "description": "Covers the constitutional body responsible for merit-based recruitment, examinations, and regulation of public service appointments."
-            },
-            {
-                "title": "Election Commission",
-                "pages": [160, 162],
-                "description": "Establishes the authority responsible for conducting free, fair, and impartial elections and referendums."
-            },
-            {
-                "title": "National Human Rights Commission",
-                "pages": [163, 167],
-                "description": "Defines the mandate to protect, promote, and monitor human rights and investigate violations."
-            },
-            {
-                "title": "National Natural Resources and Fiscal Commission",
-                "pages": [168, 171],
-                "description": "Regulates equitable distribution of natural resources, fiscal transfers, and revenue-sharing among government levels."
-            },
-            {
-                "title": "Other Commissions",
-                "pages": [172, 184],
-                "description": "Establishes additional constitutional commissions addressing inclusion, social justice, and protection of marginalized groups."
-            },
-            {
-                "title": "Provisions Relating to National Security",
-                "pages": [185, 187],
-                "description": "Covers national security policy, control of armed forces, and mechanisms for safeguarding sovereignty and territorial integrity."
-            },
-            {
-                "title": "Provisions Relating to Political Parties",
-                "pages": [188, 190],
-                "description": "Regulates formation, registration, conduct, and constitutional compliance of political parties."
-            },
-            {
-                "title": "Emergency Power",
-                "pages": [191, 193],
-                "description": "Defines conditions, procedures, and limitations for declaring a state of emergency and suspending certain rights."
-            },
-            {
-                "title": "Amendment to the Constitution",
-                "pages": [194, 195],
-                "description": "Specifies the procedures, requirements, and limitations for amending the Constitution of Nepal."
-            },
-            {
-                "title": "Miscellaneous",
-                "pages": [196, 206],
-                "description": "Contains supplementary constitutional provisions, interpretations, and administrative matters not covered elsewhere."
-            },
-            {
-                "title": "Transitional Provisions",
-                "pages": [207, 217],
-                "description": "Provides temporary arrangements for institutional transition, continuity of laws, and implementation following constitutional adoption."
-            }
+            {"title": "Preliminary", "pages": [8, 9], "description": "Defines the foundational characteristics of the Nepali state, including sovereignty, state authority, constitutional supremacy, national symbols, citizenship principles, and the basic nature of Nepal as a federal democratic republic."},
+            {"title": "Citizenship", "pages": [10, 12], "description": "Specifies the types of Nepali citizenship, eligibility criteria, acquisition and termination of citizenship, rights of citizens, and provisions related to citizenship by descent, naturalization, and gender equality in citizenship matters."},
+            {"title": "Fundamental Rights and Duties", "pages": [13, 29], "description": "Enumerates enforceable fundamental rights such as equality, freedom, justice, social security, education, health, and constitutional remedies, along with the fundamental duties of citizens toward the nation."},
+            {"title": "Directive Principles, Policies and Obligations of the State", "pages": [30, 44], "description": "Outlines non-justiciable guiding principles and state policies aimed at social justice, economic development, inclusion, good governance, environmental protection, and national interest."},
+            {"title": "Structure of State and Distribution of State Power", "pages": [45, 49], "description": "Defines Nepal's federal structure, the division of powers among federation, states, and local levels, and principles governing cooperative federalism and jurisdictional authority."},
+            {"title": "President and Vice-President", "pages": [50, 53], "description": "Details the roles, powers, election procedures, terms, and constitutional responsibilities of the President and Vice-President as ceremonial heads of state."},
+            {"title": "Federal Executive", "pages": [54, 58], "description": "Covers the formation, powers, and functions of the Council of Ministers, the Prime Minister, executive accountability, and federal governance operations."},
+            {"title": "Federal Legislature", "pages": [59, 74], "description": "Describes the composition, powers, privileges, and functioning of the Federal Parliament, including the House of Representatives and National Assembly."},
+            {"title": "Federal Legislative Procedures", "pages": [75, 79], "description": "Explains the legislative process at the federal level, including bill introduction, passage, assent, joint sittings, and parliamentary procedures."},
+            {"title": "Federal Financial Procedures", "pages": [80, 84], "description": "Regulates federal budgeting, taxation authority, public finance management, audit requirements, and expenditure authorization."},
+            {"title": "Judiciary", "pages": [85, 103], "description": "Establishes the judicial system, including the Supreme Court, High Courts, and District Courts, judicial independence, jurisdiction, and constitutional review."},
+            {"title": "Attorney General", "pages": [104, 107], "description": "Defines the appointment, powers, duties, and advisory role of the Attorney General as the chief legal advisor to the Government of Nepal."},
+            {"title": "State Executive", "pages": [108, 114], "description": "Specifies the structure and authority of provincial executives, including the Chief Minister, Council of Ministers, and their responsibilities."},
+            {"title": "State Legislature", "pages": [115, 125], "description": "Details the composition, powers, and functioning of Provincial Assemblies and their legislative authority."},
+            {"title": "State Legislative Procedures", "pages": [126, 129], "description": "Explains legislative processes within provinces, including bill procedures, assent, and internal assembly operations."},
+            {"title": "State Financial Procedures", "pages": [130, 133], "description": "Regulates provincial-level public finance, taxation powers, budget formulation, and expenditure control."},
+            {"title": "Local Executive", "pages": [134, 142], "description": "Defines the structure, authority, and responsibilities of local governments, including village and municipal executives."},
+            {"title": "Local Financial Procedures", "pages": [143, 143], "description": "Specifies financial management, revenue authority, and budgeting processes at the local government level."},
+            {"title": "Interrelations between Federation, State and Local Level", "pages": [144, 147], "description": "Addresses coordination, cooperation, dispute resolution, and power-sharing mechanisms among federal, provincial, and local governments."},
+            {"title": "Commission for the Investigation of Abuse of Authority", "pages": [148, 151], "description": "Establishes the anti-corruption constitutional body responsible for investigating misuse of public office and authority."},
+            {"title": "Auditor General", "pages": [152, 154], "description": "Defines the role of the Auditor General in auditing public accounts, ensuring financial accountability and transparency."},
+            {"title": "Public Service Commission", "pages": [155, 159], "description": "Covers the constitutional body responsible for merit-based recruitment, examinations, and regulation of public service appointments."},
+            {"title": "Election Commission", "pages": [160, 162], "description": "Establishes the authority responsible for conducting free, fair, and impartial elections and referendums."},
+            {"title": "National Human Rights Commission", "pages": [163, 167], "description": "Defines the mandate to protect, promote, and monitor human rights and investigate violations."},
+            {"title": "National Natural Resources and Fiscal Commission", "pages": [168, 171], "description": "Regulates equitable distribution of natural resources, fiscal transfers, and revenue-sharing among government levels."},
+            {"title": "Other Commissions", "pages": [172, 184], "description": "Establishes additional constitutional commissions addressing inclusion, social justice, and protection of marginalized groups."},
+            {"title": "Provisions Relating to National Security", "pages": [185, 187], "description": "Covers national security policy, control of armed forces, and mechanisms for safeguarding sovereignty and territorial integrity."},
+            {"title": "Provisions Relating to Political Parties", "pages": [188, 190], "description": "Regulates formation, registration, conduct, and constitutional compliance of political parties."},
+            {"title": "Emergency Power", "pages": [191, 193], "description": "Defines conditions, procedures, and limitations for declaring a state of emergency and suspending certain rights."},
+            {"title": "Amendment to the Constitution", "pages": [194, 195], "description": "Specifies the procedures, requirements, and limitations for amending the Constitution of Nepal."},
+            {"title": "Miscellaneous", "pages": [196, 206], "description": "Contains supplementary constitutional provisions, interpretations, and administrative matters not covered elsewhere."},
+            {"title": "Transitional Provisions", "pages": [207, 217], "description": "Provides temporary arrangements for institutional transition, continuity of laws, and implementation following constitutional adoption."}
+        ]
+    },
+    {
+        "name": "The National Civil (Code) Act, 2017 (2074)",
+        "file": "national_code.pdf",
+        "description": "A comprehensive legal framework enacted to amend and consolidate the civil laws of Nepal. It regulates matters concerning general legal principles, civil rights, natural and legal persons, family law, property rights, contracts, other liabilities including torts, and private international law.",
+        "contents": [
+            {"title": "General Provisions", "pages": [4, 5], "description": "Covers the short title, commencement, definitions of key terms, and the saving of special legal provisions."},
+            {"title": "General Principles of Civil Law", "pages": [6, 7], "description": "Establishes foundational legal principles, such as ignorance of the law is not an excuse, liability for wrongdoings, and maintaining good neighborhood."},
+            {"title": "Provisions Relating to Civil Rights", "pages": [8, 13], "description": "Guarantees equality before the law, non-discrimination, fundamental freedoms, the right to privacy, and provisions for compensation for civil rights violations."},
+            {"title": "Provisions Relating to Natural Persons", "pages": [14, 21], "description": "Details the recognition of natural persons, the right to a name, legal competency, handling of minors and incompetent persons, and the presumption of death."},
+            {"title": "Provisions Relating to Legal Persons", "pages": [22, 27], "description": "Covers the incorporation, legal competency, management, operation, and liabilities of body corporates and legal entities."},
+            {"title": "Provisions Relating to Bankruptcy of Natural Persons", "pages": [28, 41], "description": "Outlines the procedures for initiating bankruptcy proceedings, asset management, priority order for settling debts, and the termination of bankruptcy status."},
+            {"title": "Provisions Relating to Marriage", "pages": [42, 51], "description": "Regulates the freedom of marriage, conditions for valid marriages, void and voidable marriages, and the mandatory registration of marriages."},
+            {"title": "Provisions Relating to Consequences of Marriage", "pages": [52, 53], "description": "Details the mutual obligations, cohabitation requirements, and shared household management responsibilities of husband and wife."},
+            {"title": "Provisions Relating to Divorce", "pages": [54, 58], "description": "Sets out the conditions and procedures for divorce by mutual consent or petition, including rules for the partition of property and alimony."},
+            {"title": "Provisions Relating to Relationship of Mother, Father and Son and Daughter", "pages": [59, 68], "description": "Covers the determination of paternity and maternity, birth registration, custody arrangements, and the obligations for the care and maintenance of children."},
+            {"title": "Provisions Relating to Parental Authority", "pages": [69, 75], "description": "Defines the rights, responsibilities, and duties of parents over their children, including restrictions on and the termination of parental authority."},
+            {"title": "Provisions Relating to Guardianship", "pages": [76, 85], "description": "Details the priority order, appointment, disqualification, rights, and duties of guardians for incompetent or quasi-competent persons."},
+            {"title": "Provisions Relating to Curatorship", "pages": [86, 91], "description": "Outlines the appointment, qualifications, and responsibilities of curators managing the affairs and properties of minors or persons of unsound mind."},
+            {"title": "Provisions Relating to Adoption", "pages": [92, 100], "description": "Specifies the conditions, legal procedures, and reciprocal rights and obligations involved in domestic adoption."},
+            {"title": "Provisions Relating to Inter-country Adoption", "pages": [101, 115], "description": "Regulates the adoption of Nepali children by foreigners, including the formation and role of the Inter-country Adoption Board and necessary permissions."},
+            {"title": "Provisions Relating to Partition", "pages": [116, 131], "description": "Provides rules for identifying coparceners, ensuring equal entitlement to property, executing partition deeds, and managing the separation of joint family property."},
+            {"title": "Provisions Relating to Succession", "pages": [132, 140], "description": "Details the order of preference for heirs, the acceptance or rejection of succession rights, and the handling of properties belonging to deceased foreigners."},
+            {"title": "General Provisions Relating to Property", "pages": [141, 149], "description": "Defines property and categorizes it into movable, immovable, private, common, joint, community, public, government, and trust properties."},
+            {"title": "Provisions Relating to Ownership and Possession", "pages": [150, 153], "description": "Explains the rights of property owners, the lawful acquisition of possessory rights, and the rules governing adverse possession."},
+            {"title": "Provisions Relating to Uses of Property", "pages": [154, 157], "description": "Sets restrictions on encroaching upon neighbors, rules for building structures, and necessary safety measures for property usage."},
+            {"title": "Provisions Relating to Cultivation, Use and Registration of Land", "pages": [158, 161], "description": "Governs the cultivation and use of land, water and ditch rights, and the mandatory requirements for land transmission and registration."},
+            {"title": "Provisions Relating to Government, Public and Community Properties", "pages": [162, 170], "description": "Defines government, public, and community properties, outlining the obligations to protect them and prohibiting unauthorized private registration or use."},
+            {"title": "Provisions Relating to Trusts", "pages": [171, 195], "description": "Regulates the establishment, registration, operation, and management of public and private trusts, including the duties and liabilities of trustees."},
+            {"title": "Provisions Relating to Usufruct", "pages": [196, 204], "description": "Covers the creation, validity, and specific rights and obligations involved when a person is granted the temporary right to use and derive benefit from another's property."},
+            {"title": "Provisions Relating to Servitudes", "pages": [205, 210], "description": "Details the rules allowing a property owner to use another's property for specific necessary purposes, such as passage, water flow, or utility lines."},
+            {"title": "Provisions Relating to House Rent", "pages": [211, 222], "description": "Outlines the mutual obligations of landlords and tenants, requirements for rent agreements, maintenance rules, and legal procedures for eviction."},
+            {"title": "Provisions Relating to Donation and Gift", "pages": [223, 226], "description": "Specifies the conditions under which donations and gifts are valid, void, or voidable, including rules for gifts with testamentary effect."},
+            {"title": "Provisions Relating to Transfer and Acquisition of Property", "pages": [227, 237], "description": "Governs the legal rules and execution of deeds required for selling, exchanging, or otherwise transferring property ownership rights."},
+            {"title": "Provisions Relating to Mortgage of Immovable Property", "pages": [238, 247], "description": "Sets the conditions for mortgages with or without possession, the rights and duties of mortgagees, and the procedures for property redemption."},
+            {"title": "Provisions Relating to Pre-emption of Immovable Property", "pages": [248, 253], "description": "Defines the legal rights of heirs and neighbors to pre-empt (purchase) sold immovable property, and the petition procedures for exercising this right."},
+            {"title": "Provisions Relating to Approval of Registration of Deeds", "pages": [254, 259], "description": "Lists the specific deeds that require mandatory registration, the registration procedures, and the associated fees."},
+            {"title": "Provisions Relating to Transactions", "pages": [260, 269], "description": "Covers general rules for financial transactions, borrowing loans, the execution of transaction deeds, and legal limits on interest rates."},
+            {"title": "Provisions Relating to Obligations", "pages": [270, 274], "description": "Establishes how legal obligations are created (e.g., by law, contract, tort) and the general rules governing their fulfillment."},
+            {"title": "Provisions Relating to Formation of Contracts", "pages": [275, 283], "description": "Details the requirements for a valid contract, including the competence of parties, the mechanisms of offer and acceptance, and contingent contracts."},
+            {"title": "Validity of Contracts", "pages": [284, 291], "description": "Defines the specific circumstances that render a contract void, voidable (such as those involving coercion, fraud, or undue influence), or unenforceable."},
+            {"title": "Provisions Relating to Performance of Contracts", "pages": [292, 301], "description": "Provides rules regarding the designated time, place, and manner for performing contractual obligations, and circumstances excusing performance."},
+            {"title": "Provisions Relating to Breach of Contracts and Remedies", "pages": [302, 306], "description": "Outlines the consequences of a contract breach, the methods for assessing compensation, and the conditions for claiming specific performance."},
+            {"title": "Provisions Relating to Contracts of Sales of Goods", "pages": [307, 316], "description": "Regulates the sale of goods, covering price determination, payment terms, quality conditions, transfer of ownership, and delivery rules."},
+            {"title": "Provisions Relating to Contracts of Guarantee", "pages": [317, 326], "description": "Details the obligations and liabilities of sureties or guarantors, conditions for their discharge, and the rules surrounding contracts of indemnity."},
+            {"title": "Provisions Relating to Contracts of Bailment", "pages": [327, 331], "description": "Covers the respective duties of bailors and bailees concerning the care, permitted use, and mandatory return of bailed goods."},
+            {"title": "Provisions Relating to Contracts of Pledge or Deposit", "pages": [332, 335], "description": "Sets the rules for providing and returning goods as collateral or deposit, and the rights of the pledgee to sell the collateral upon default."},
+            {"title": "Provisions Relating to Contracts of Agency", "pages": [336, 343], "description": "Regulates the appointment, rights, duties, and liabilities of agents, sub-agents, and their principals in business transactions."},
+            {"title": "Provisions Relating to Contracts of Carriage of Goods", "pages": [344, 348], "description": "Defines the obligations, rights, and limits of liability for carriers engaged in the transportation of goods."},
+            {"title": "Provisions Relating to Contracts of Lease", "pages": [349, 359], "description": "Outlines the rules for leasing goods or property, including maintenance responsibilities, payment of lease rent, and conditions for termination."},
+            {"title": "Provisions Relating to Hire-purchase Contracts", "pages": [360, 372], "description": "Details the required terms, conditions, transfer of ownership, and specific termination rules governing hire-purchase agreements."},
+            {"title": "Provisions Relating to Wages", "pages": [373, 377], "description": "Covers general employment rules, wage determination, standard working hours, and specific legal protections for domestic helpers."},
+            {"title": "Provisions Relating to Indirect or Quasi-Contracts", "pages": [378, 382], "description": "Regulates obligations that arise without a formal contract, such as the voluntary management of another's property and rights to reimbursement."},
+            {"title": "Provisions Relating to Unjust Enrichment", "pages": [383, 386], "description": "Provides the legal rules requiring the return of benefits, goods, or money that a person has obtained by mistake or without legal justification."},
+            {"title": "Provisions Relating to Torts", "pages": [387, 392], "description": "Establishes liabilities and the right to compensation for damages caused by negligence, trespass, or the actions of dependents, animals, or structures."},
+            {"title": "Provisions Relating to Liability for Defective Products", "pages": [393, 396], "description": "Defines the responsibilities and liabilities of producers and sellers for any loss or damage caused to consumers by defective goods or services."},
+            {"title": "Provisions Relating to Private International Law", "pages": [397, 409], "description": "Governs cases involving foreign parties or elements, including rules on legal capacity, international marriage and divorce, property rights, and the jurisdiction of Nepali courts."}
+        ]
+    },
+    {
+        "name": "The National Criminal Procedure (Code) Act, 2017",
+        "file": "criminal_code.pdf",
+        "description": "A procedural law enacted to amend and consolidate the laws governing investigation, prosecution, filing, proceedings, hearing, adjudication, and execution of judgments in criminal cases in Nepal.",
+        "contents": [
+            {"title": "Preliminary", "pages": [1, 3], "description": "Establishes the short title, commencement date, and key definitions used throughout the Code, including court, offence, investigating authority, criminal case, and government attorney."},
+            {"title": "Provisions Relating to Information on Commission of, and Investigation into, Offences", "pages": [4, 41], "description": "Covers the procedures for receiving information about offences, initiating investigations, conducting searches and seizures, gathering evidence, and the duties and powers of investigating authorities."},
+            {"title": "Prosecution and Filing of Cases", "pages": [42, 55], "description": "Details the rules governing the prosecution of offences, the role of government attorneys, filing of charge-sheets, and the procedures for initiating cases in courts."},
+            {"title": "Jurisdiction of Court", "pages": [56, 60], "description": "Defines the territorial and subject-matter jurisdiction of courts at different levels to hear and adjudicate criminal cases."},
+            {"title": "Provisions Relating to Preliminary Proceedings of Cases", "pages": [61, 67], "description": "Covers the initial procedural steps once a case is filed, including scrutiny of complaints, preliminary hearings, and notices to accused persons."},
+            {"title": "Warrant for Arrest and Summons", "pages": [68, 86], "description": "Specifies the conditions, authority, and procedures for issuing warrants for arrest and summons to accused persons and witnesses, including provisions for absconding persons."},
+            {"title": "Provisions Relating to Detention, Bail and Guarantee", "pages": [87, 94], "description": "Regulates the lawful detention of accused persons, the conditions and procedures for granting bail, types of guarantees, and provisions for detention during investigation and trial."},
+            {"title": "Provisions Relating to Appointed Date", "pages": [95, 99], "description": "Governs the scheduling of hearing dates, fixing of procedural timelines, and consequences of non-appearance by parties before the court."},
+            {"title": "Provisions Relating to Attorney", "pages": [100, 104], "description": "Outlines the rights of accused persons to legal representation, the role of appointed and defense attorneys, and provisions relating to legal aid."},
+            {"title": "Provisions Relating to Transfer and Adjournment of Cases", "pages": [105, 110], "description": "Provides grounds and procedures for transferring cases between courts, granting adjournments, and managing case scheduling in the interest of justice."},
+            {"title": "Provisions Relating to Examination of Evidence", "pages": [111, 123], "description": "Covers the rules for examining witnesses, recording statements, admissibility of evidence, cross-examination, and the examination of experts and documents."},
+            {"title": "Provisions Relating to Withdrawal, Compromise and Mediation of Cases", "pages": [124, 128], "description": "Sets out the conditions under which cases may be withdrawn, settled through compromise between parties, or referred to mediation, including compoundable offences."},
+            {"title": "Provisions Relating to Proceedings, Hearing of, and Judgments in, Cases", "pages": [129, 142], "description": "Regulates the conduct of trials, the hearing of arguments, recording of judgments, sentencing, and the pronouncement of decisions by courts."},
+            {"title": "Provisions Relating to Appeal and Reference for Sanction", "pages": [143, 153], "description": "Defines the right of appeal against court decisions, the appellate process, timelines for filing appeals, and provisions for referring certain matters for sanction to higher authorities."},
+            {"title": "Provisions Relating to Execution of Judgments", "pages": [154, 177], "description": "Covers the procedures for enforcing court judgments, including the execution of sentences of imprisonment, fines, forfeiture, and the realization of compensation awarded to victims."},
+            {"title": "Miscellaneous", "pages": [178, 196], "description": "Contains supplementary provisions including power to frame rules, provisions relating to limitation periods, international legal cooperation, and transitional arrangements."}
+        ]
+    },
+    {
+        "name": "The Electronic Transactions Act, 2063 (2008)",
+        "file": "electronic_transactions_act.pdf",
+        "description": "An Act to provide legal recognition, validity, and security to electronic records and digital signatures, regulate certifying authorities, govern electronic commerce and government use of electronic records, address computer-related offences, and establish IT tribunals for adjudication.",
+        "contents": [
+            {"title": "Preliminary", "pages": [1, 5], "description": "Sets out the short title, commencement, territorial extent, and comprehensive definitions of key terms including electronic record, digital signature, computer, certifying authority, subscriber, controller, and related concepts."},
+            {"title": "Provisions Relating to Electronic Record and Digital Signature", "pages": [6, 8], "description": "Establishes the legal recognition and validity of electronic records and digital signatures, conditions for their secure use, and requirements for safe storage and submission of electronic records in place of originals."},
+            {"title": "Provisions Relating to Dispatch, Receipt and Acknowledgement of Electronic Records", "pages": [8, 11], "description": "Governs attribution of electronic records to originators, procedures for acknowledgement of receipt, and rules determining the time and place of dispatch and receipt of electronic records."},
+            {"title": "Provisions Relating to Controller and Certifying Authority", "pages": [11, 18], "description": "Establishes the Controller of Certifying Authorities, defines functions and powers of the Controller, and regulates the licensing, renewal, suspension, revocation, and performance audit of certifying authorities."},
+            {"title": "Provisions Relating to Digital Signature and Certificates", "pages": [18, 20], "description": "Covers the issuance, suspension, and revocation of digital signature certificates by licensed certifying authorities, and the public notice requirements for such actions."},
+            {"title": "Functions, Duties and Rights of Subscriber", "pages": [20, 22], "description": "Defines the obligations of subscribers in generating key pairs, accepting certificates, retaining private keys securely, and depositing private keys to the Controller when required for national security or law enforcement purposes."},
+            {"title": "Electronic Record and Government Use of Digital Signature", "pages": [22, 24], "description": "Authorizes the Government of Nepal to publish official documents in electronic form, accept electronic filings, and use digital signatures in government offices and public institutions."},
+            {"title": "Provisions Relating to Network Service", "pages": [23, 24], "description": "Defines the liabilities of network service providers acting as intermediaries and limits their liability for third-party content unless they have knowledge of its illegal nature."},
+            {"title": "Offences Relating to Computer", "pages": [24, 29], "description": "Creates criminal offences for unauthorized access, damage to computer systems, piracy of source code, publication of illegal electronic content, breach of confidentiality, computer fraud, submission of false statements, and abetment of computer offences, with associated penalties."},
+            {"title": "Provisions Relating to Information Technology Tribunal", "pages": [29, 31], "description": "Establishes a three-member Information Technology Tribunal to adjudicate computer offences, including qualifications of members, terms of office, vacancy conditions, staffing, and procedural rules."},
+            {"title": "Provisions Relating to Information Technology Appellate Tribunal", "pages": [31, 34], "description": "Establishes the IT Appellate Tribunal to hear appeals against decisions of the Tribunal and the Controller, with provisions for member qualifications, tenure, vacancies, and procedures."},
+            {"title": "Miscellaneous", "pages": [34, 36], "description": "Contains supplementary provisions including party agreements on electronic record procedures, government directives to the Controller, limitation periods for complaints, government as plaintiff in offence cases, compensation recovery, exclusions from the Act's application, and rule-making powers."}
+        ]
+    },
+    {
+        "name": "Income Tax Act, 2058 (2002)",
+        "file": "income_tax_act.pdf",
+        "description": "The principal legislation governing income tax in Nepal, enacted to amend and consolidate the law on income tax. It covers the tax base, computation, exemptions, deductions, special provisions for entities and sectors, international tax, withholding, assessment, collection, appeals, penalties, and miscellaneous administrative matters.",
+        "contents": [
+            {"title": "Preliminary", "pages": [1, 16], "description": "Provides the short title, commencement, territorial scope, and extensive definitions of key terms used throughout the Act, including person, income, entity, employment, investment, business, and related concepts."},
+            {"title": "Tax Bases", "pages": [17, 20], "description": "Defines the taxable persons, types of taxable income (employment, business, investment), the residence rules determining tax liability, and the basic framework for calculating assessable income."},
+            {"title": "Computation of Tax", "pages": [20, 29], "description": "Specifies how taxable income from business, employment, and investment is computed, including the treatment of capital gains, and sets out the applicable tax rates."},
+            {"title": "Exemptible Amounts and Other Exemptions", "pages": [29, 30], "description": "Lists amounts exempt from income tax including income of certain entities, specific payments, and other categories of exempt income."},
+            {"title": "Deductible Amounts", "pages": [30, 44], "description": "Enumerates the expenses and amounts deductible in computing business income, including general business expenses, depreciation, research and development costs, and provisions for bad debts."},
+            {"title": "Tax Accounting and Time", "pages": [44, 50], "description": "Prescribes the income year, accounting methods (cash vs. accrual), translation of foreign currency amounts, and rules for timing of income recognition and deductions."},
+            {"title": "Quantification, Allocation and Characterization of Amounts", "pages": [50, 58], "description": "Covers the rules for market value determination, allocation of amounts between related parties, anti-avoidance provisions, and characterization of income in transactions involving related or associated persons."},
+            {"title": "Assessment of Net Profit from Property and Liability", "pages": [58, 78], "description": "Governs the computation of income from the disposal of assets and settlement of liabilities, cost basis rules, recognition of gains and losses, and treatment of depreciable assets."},
+            {"title": "Special Provisions for Entity", "pages": [78, 87], "description": "Contains special tax rules applicable to entities, including companies and partnerships, covering distribution of profits, dividend treatment, and the taxation of entity-level transactions."},
+            {"title": "Special Provisions on Banking and Insurance Business", "pages": [87, 91], "description": "Provides sector-specific rules for the computation of taxable income of banks, financial institutions, and insurance companies, including provisions for loan loss reserves and insurance technical reserves."},
+            {"title": "Special Provisions on Retirement Saving", "pages": [91, 95], "description": "Regulates the tax treatment of contributions to and payments from approved retirement funds, and defines the conditions for tax concessions on retirement savings and benefits."},
+            {"title": "International Tax", "pages": [95, 115], "description": "Covers the taxation of non-resident persons and income with an international element, rules on permanent establishments, foreign tax credits, thin capitalization, transfer pricing, and controlled foreign corporations."},
+            {"title": "Records and Information Collection", "pages": [115, 120], "description": "Requires taxpayers and third parties to maintain accounts and records, and empowers tax officers to access premises, inspect records, and collect information for tax administration purposes."},
+            {"title": "Payment of Tax", "pages": [120, 123], "description": "Specifies the time, place, and mode for payment of income tax, including rules for the payment of advance tax and withholding tax obligations."},
+            {"title": "Withholding on Payment", "pages": [123, 134], "description": "Establishes the withholding tax regime, requiring persons making specified payments (employment income, dividends, interest, rent, service fees, contract payments) to withhold and remit tax on behalf of recipients."},
+            {"title": "Installment", "pages": [134, 135], "description": "Provides the rules for payment of income tax in installments during the income year, including the calculation of installment amounts and due dates."},
+            {"title": "Income Return and Assessment of Tax", "pages": [135, 142], "description": "Regulates the filing of income tax returns, self-assessment, departmental assessment, amended assessments, and the procedures for determining tax liability by tax officers."},
+            {"title": "Collection, Remission and Refund of Tax", "pages": [142, 157], "description": "Covers the enforcement of tax collection, recovery of tax from third parties, security for tax, provisions for remission of tax in hardship cases, and the refund of excess tax paid."},
+            {"title": "Review and Appeal", "pages": [157, 161], "description": "Establishes the administrative and judicial review mechanisms for disputing tax assessments, including internal review by the Tax Department, appeal to the Revenue Tribunal, and further appeal to courts."},
+            {"title": "Fees and Interest", "pages": [161, 167], "description": "Prescribes interest charges on late payment of tax, fees for late filing of returns, and other financial penalties for non-compliance with procedural obligations."},
+            {"title": "Offence and Punishment", "pages": [167, 170], "description": "Defines tax-related criminal offences including tax evasion, filing false returns, and obstruction of tax administration, along with applicable fines and imprisonment penalties."},
+            {"title": "Miscellaneous", "pages": [170, 194], "description": "Contains supplementary provisions including the establishment and powers of the Inland Revenue Department, taxpayer identification numbers, confidentiality of information, power to frame rules, and transitional arrangements."}
         ]
     }
 ]
