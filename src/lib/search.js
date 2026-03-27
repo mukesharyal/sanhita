@@ -1,10 +1,16 @@
 import { create, insert, searchVector } from '@orama/orama';
 import { embedText } from './embed.js';
+import { base } from '$app/paths';
 
 let db = null;
 let dbPromise = null;
 let sourceStatus = 'idle';
 let sourceProgress = 0;
+
+function withBase(path) {
+    const normalized = path.startsWith('/') ? path : `/${path}`;
+    return `${base}${normalized}`;
+}
 
 async function fetchJson(path) {
     const response = await fetch(path, { cache: 'force-cache' });
@@ -16,7 +22,7 @@ async function fetchJson(path) {
 
 async function loadEmbeddingsData(onStatus) {
     reportSourceStatus(onStatus, 'loading', 'Loading embedding manifest...', 8);
-    const manifest = await fetchJson('/embeddings/manifest.json');
+    const manifest = await fetchJson(withBase('/embeddings/manifest.json'));
     const fileEntries = Array.isArray(manifest?.files) ? manifest.files : [];
 
     if (fileEntries.length === 0) {
@@ -34,7 +40,7 @@ async function loadEmbeddingsData(onStatus) {
         const progress = 10 + Math.round(((i + 1) / totalFiles) * 15);
         reportSourceStatus(onStatus, 'loading', `Loading embeddings chunk ${i + 1}/${totalFiles}...`, progress);
 
-        const chunk = await fetchJson(`/embeddings/${fileName}`);
+        const chunk = await fetchJson(withBase(`/embeddings/${fileName}`));
         if (Array.isArray(chunk)) {
             chunks.push(...chunk);
         }

@@ -1,4 +1,8 @@
-import { pipeline } from '@xenova/transformers';
+import { env, pipeline } from '@xenova/transformers';
+
+// In static SPA hosting, unknown paths often resolve to index.html.
+// Disabling local model lookup avoids JSON.parse failures from HTML fallbacks.
+env.allowLocalModels = false;
 
 let embedder = null;
 let embedderPromise = null;
