@@ -6,9 +6,43 @@ let dbPromise = null;
 let sourceStatus = 'idle';
 let sourceProgress = 0;
 
-async function loadEmbeddingsData() {
-    const module = await import('./static/embeddings.json');
-    return module.default || [];
+async function fetchJson(path) {
+    const response = await fetch(path, { cache: 'force-cache' });
+    if (!response.ok) {
+        throw new Error(`Failed to fetch ${path}: ${response.status}`);
+    }
+    return response.json();
+}
+
+async function loadEmbeddingsData(onStatus) {
+    reportSourceStatus(onStatus, 'loading', 'Loading embedding manifest...', 8);
+    const manifest = await fetchJson('/embeddings/manifest.json');
+    const fileEntries = Array.isArray(manifest?.files) ? manifest.files : [];
+
+    if (fileEntries.length === 0) {
+        throw new Error('Embedding manifest has no chunk files.');
+    }
+
+    const chunks = [];
+    const totalFiles = fileEntries.length;
+
+    for (let i = 0; i < fileEntries.length; i += 1) {
+        const fileInfo = fileEntries[i];
+        const fileName = typeof fileInfo === 'string' ? fileInfo : fileInfo?.file;
+        if (!fileName) continue;
+
+        const progress = 10 + Math.round(((i + 1) / totalFiles) * 15);
+        reportSourceStatus(onStatus, 'loading', `Loading embeddings chunk ${i + 1}/${totalFiles}...`, progress);
+
+        const chunk = await fetchJson(`/embeddings/${fileName}`);
+        if (Array.isArray(chunk)) {
+            chunks.push(...chunk);
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, 0));
+    }
+
+    return chunks;
 }
 
 function reportSourceStatus(onStatus, state, message, progress = sourceProgress) {
@@ -28,8 +62,8 @@ async function getDatabase(onStatus) {
     if (dbPromise) return dbPromise;
 
     dbPromise = (async () => {
-        reportSourceStatus(onStatus, 'loading', 'Loading legal source embeddings...', 10);
-        const embeddingsData = await loadEmbeddingsData();
+        reportSourceStatus(onStatus, 'loading', 'Loading legal source embeddings...', 6);
+        const embeddingsData = await loadEmbeddingsData(onStatus);
 
         reportSourceStatus(onStatus, 'loading', 'Building searchable source index...', 25);
         const createdDb = await create({

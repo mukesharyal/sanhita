@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "source": "src/lib/static/embeddings.json",
+  "totalEntries": 523,
+  "files": [
+    {
+      "file": "embeddings.part001.json",
+      "entries": 303,
+      "bytes": 20908157
+    },
+    {
+      "file": "embeddings.part002.json",
+      "entries": 220,
+      "bytes": 15249230
+    }
+  ]
+}

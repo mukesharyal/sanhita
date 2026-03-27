@@ -32,7 +32,8 @@ It combines semantic retrieval, targeted PDF extraction, and LLM reasoning to an
 - `src/lib/pdf.js`: PDF loading and selected page extraction.
 - `src/lib/prompts.js`: LLM prompts for query expansion, answering, and document/chapter selection.
 - `src/lib/static/index.json`: legal document/chapter metadata for fallback selection.
-- `src/lib/static/embeddings.json`: semantic search corpus embeddings.
+- `static/embeddings/manifest.json` + `static/embeddings/*.json`: chunked semantic search embeddings used at runtime.
+- `data/embeddings.source.json`: original full embeddings source used to generate chunks.
 
 ## How Retrieval Works
 
