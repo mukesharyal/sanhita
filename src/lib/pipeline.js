@@ -1,6 +1,6 @@
 import Groq from "groq-sdk";
 import { searchWithQueries } from "$lib/search.js";
-import { loadPDFByFile, extractPages } from "$lib/pdf.js";
+import { loadPDFByFile, extractPages, resolvePdfFileName } from "$lib/pdf.js";
 import { layerOnePrompt, layerTwoPrompt, layerThreePrompt, documentSectionPickerPrompt } from "$lib/prompts.js";
 import documentIndex from "$lib/static/index.json";
 
@@ -74,7 +74,7 @@ function pickDocumentAndSection(rawValue, docs) {
     };
 }
 
-function buildFallbackPreviewResult(selectedDoc, selectedSection, rawText) {
+function buildFallbackPreviewResult(selectedDoc, selectedSection, rawText, resolvedFileName) {
     if (!selectedDoc || !selectedSection) return null;
 
     const primaryPage = Array.isArray(selectedSection.pages) ? selectedSection.pages[0] : 1;
@@ -85,7 +85,7 @@ function buildFallbackPreviewResult(selectedDoc, selectedSection, rawText) {
         document: {
             text: snippet,
             metadata: JSON.stringify({
-                source: selectedDoc.file,
+                source: resolvedFileName || selectedDoc.file || "constitution.pdf",
                 primary_page: primaryPage,
                 highlight_rects: [],
                 page_dimensions: {},
@@ -155,10 +155,11 @@ export async function runPipeline(userQuery, onStatus) {
             const pageRanges = useAlternateSection
                 ? [selectedSection.pages, alternateSection.pages]
                 : [selectedSection.pages];
-            const pdfDoc = await loadPDFByFile(selectedDoc?.file || "constitution.pdf");
+            const resolvedFileName = resolvePdfFileName(selectedDoc?.file, "constitution.pdf");
+            const pdfDoc = await loadPDFByFile(resolvedFileName);
             const rawText = await extractPages(pdfDoc, pageRanges);
 
-            previewResult = buildFallbackPreviewResult(selectedDoc, selectedSection, rawText) || previewResult;
+            previewResult = buildFallbackPreviewResult(selectedDoc, selectedSection, rawText, resolvedFileName) || previewResult;
 
             // Final LLM attempt with the extracted raw text
             onStatus("answering", "Generating answer from document text...");

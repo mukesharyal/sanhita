@@ -2,6 +2,7 @@
   import { createEventDispatcher, tick } from 'svelte';
   import * as pdfjsLib from 'pdfjs-dist';
   import documentIndex from '$lib/static/index.json';
+  import { getPdfUrl, resolvePdfFileName } from '$lib/pdf.js';
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -47,12 +48,6 @@
       .replace(/\.[^/.]+$/, '')
       .replace(/_/g, ' ')
       .replace(/\b\w/g, (c) => c.toUpperCase());
-  }
-
-  function toPdfFileName(source) {
-    const base = (source || '').split('/').pop();
-    if (!base) return '';
-    return base.toLowerCase().endsWith('.pdf') ? base : `${base}.pdf`;
   }
 
   function normalizeKey(value) {
@@ -181,7 +176,7 @@
   }
 
   async function loadPdfDocument(fileName) {
-    const pdfUrl = new URL(`../lib/static/${fileName}`, import.meta.url).toString();
+    const pdfUrl = getPdfUrl(fileName, 'constitution.pdf');
     return pdfjsLib.getDocument(pdfUrl).promise;
   }
 
@@ -332,12 +327,12 @@
     try {
       const metadata = parseMetadata(result.document.metadata);
       const source = metadata.source || '';
-      const fileNameFromSource = toPdfFileName(source);
+      const fileNameFromSource = resolvePdfFileName(source, 'constitution.pdf');
       const snippet = result.document.text || '';
       const detectedPrimary = Number(metadata.primary_page);
 
       const matchedDoc = resolveDocumentEntry(source, fileNameFromSource, detectedPrimary);
-      const resolvedFileName = matchedDoc?.file || fileNameFromSource || 'constitution.pdf';
+      const resolvedFileName = resolvePdfFileName(matchedDoc?.file || fileNameFromSource, 'constitution.pdf');
 
       sourceLabel = formatSourceLabel(resolvedFileName);
       primaryPage = Number.isFinite(detectedPrimary) ? detectedPrimary : 'N/A';

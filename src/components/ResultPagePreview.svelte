@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import * as pdfjsLib from 'pdfjs-dist';
+  import { getPdfUrl, resolvePdfFileName } from '$lib/pdf.js';
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -32,12 +33,6 @@
       .replace(/\b\w/g, (c) => c.toUpperCase());
   }
 
-  function toPdfFileName(source) {
-    const base = (source || '').split('/').pop();
-    if (!base) return '';
-    return base.toLowerCase().endsWith('.pdf') ? base : `${base}.pdf`;
-  }
-
   async function renderPreview() {
     if (!result?.document) return;
 
@@ -48,12 +43,12 @@
     try {
       const metadata = parseMetadata(result.document.metadata);
       const source = metadata.source || '';
-      const fileName = toPdfFileName(source) || 'constitution.pdf';
+      const fileName = resolvePdfFileName(source, 'constitution.pdf');
       const detectedPage = Number(metadata.primary_page);
 
       sourceLabel = formatSourceLabel(fileName);
 
-      const pdfUrl = new URL(`../lib/static/${fileName}`, import.meta.url).toString();
+      const pdfUrl = getPdfUrl(fileName, 'constitution.pdf');
       const pdfDoc = await pdfjsLib.getDocument(pdfUrl).promise;
 
       const safePage = Number.isFinite(detectedPage)

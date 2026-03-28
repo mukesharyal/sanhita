@@ -40,7 +40,7 @@
     },
     {
         "name": "The National Civil (Code) Act, 2017 (2074)",
-        "file": "national_code.pdf",
+        "file": "civil_code.pdf",
         "description": "A comprehensive legal framework enacted to amend and consolidate the civil laws of Nepal. It regulates matters concerning general legal principles, civil rights, natural and legal persons, family law, property rights, contracts, other liabilities including torts, and private international law.",
         "contents": [
             {"title": "General Provisions", "pages": [4, 5], "description": "Covers the short title, commencement, definitions of key terms, and the saving of special legal provisions."},
@@ -98,7 +98,7 @@
     },
     {
         "name": "The National Criminal Procedure (Code) Act, 2017",
-        "file": "criminal_code.pdf",
+        "file": "criminal_act.pdf",
         "description": "A procedural law enacted to amend and consolidate the laws governing investigation, prosecution, filing, proceedings, hearing, adjudication, and execution of judgments in criminal cases in Nepal.",
         "contents": [
             {"title": "Preliminary", "pages": [1, 3], "description": "Establishes the short title, commencement date, and key definitions used throughout the Code, including court, offence, investigating authority, criminal case, and government attorney."},
@@ -140,7 +140,7 @@
     },
     {
         "name": "Income Tax Act, 2058 (2002)",
-        "file": "income_tax_act.pdf",
+        "file": "income_tax.pdf",
         "description": "The principal legislation governing income tax in Nepal, enacted to amend and consolidate the law on income tax. It covers the tax base, computation, exemptions, deductions, special provisions for entities and sectors, international tax, withholding, assessment, collection, appeals, penalties, and miscellaneous administrative matters.",
         "contents": [
             {"title": "Preliminary", "pages": [1, 16], "description": "Provides the short title, commencement, territorial scope, and extensive definitions of key terms used throughout the Act, including person, income, entity, employment, investment, business, and related concepts."},
