@@ -94,6 +94,7 @@ function pickBestSemanticSupport(answer, searchResults) {
 
     if (!best) return null;
     return {
+        hit: best,
         snippet: truncate(best?.document?.text || "", 450),
         metadata: parseJsonSafe(best?.document?.metadata, {}),
         overlap: bestScore,
@@ -305,12 +306,16 @@ export async function runPipeline(userQuery, onStatus) {
         if (candidate && !candidate.includes("INSUFFICIENT_CONTEXT")) {
             finalAnswer = candidate;
             const semanticSupport = pickBestSemanticSupport(finalAnswer, searchResults);
+            if (semanticSupport?.hit) {
+                previewResult = semanticSupport.hit;
+            }
             supportingSnippet = semanticSupport?.snippet || null;
             supportingMetadata = semanticSupport?.metadata || null;
             debugSection(traceId, "STEP 3 - Semantic Supporting Snippet", {
                 overlapScore: semanticSupport?.overlap || 0,
                 snippet: supportingSnippet,
                 metadata: supportingMetadata,
+                previewUsesSupportingHit: Boolean(semanticSupport?.hit),
             });
         }
     } else {
