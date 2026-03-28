@@ -1,54 +1,27 @@
 import { create, insert, searchVector } from '@orama/orama';
 import { embedText } from './embed.js';
-import { base } from '$app/paths';
+import embeddingsPayload from '$lib/static/embeddings.json';
 
 let db = null;
 let dbPromise = null;
 let sourceStatus = 'idle';
 let sourceProgress = 0;
 
-function withBase(path) {
-    const normalized = path.startsWith('/') ? path : `/${path}`;
-    return `${base}${normalized}`;
-}
-
-async function fetchJson(path) {
-    const response = await fetch(path, { cache: 'force-cache' });
-    if (!response.ok) {
-        throw new Error(`Failed to fetch ${path}: ${response.status}`);
-    }
-    return response.json();
-}
-
 async function loadEmbeddingsData(onStatus) {
-    reportSourceStatus(onStatus, 'loading', 'Loading embedding manifest...', 8);
-    const manifest = await fetchJson(withBase('/embeddings/manifest.json'));
-    const fileEntries = Array.isArray(manifest?.files) ? manifest.files : [];
+    reportSourceStatus(onStatus, 'loading', 'Loading embeddings.json...', 12);
 
-    if (fileEntries.length === 0) {
-        throw new Error('Embedding manifest has no chunk files.');
+    const embeddingsData = Array.isArray(embeddingsPayload)
+        ? embeddingsPayload
+        : Array.isArray(embeddingsPayload?.items)
+            ? embeddingsPayload.items
+            : [];
+
+    if (embeddingsData.length === 0) {
+        throw new Error('embeddings.json does not contain a valid embeddings array.');
     }
 
-    const chunks = [];
-    const totalFiles = fileEntries.length;
-
-    for (let i = 0; i < fileEntries.length; i += 1) {
-        const fileInfo = fileEntries[i];
-        const fileName = typeof fileInfo === 'string' ? fileInfo : fileInfo?.file;
-        if (!fileName) continue;
-
-        const progress = 10 + Math.round(((i + 1) / totalFiles) * 15);
-        reportSourceStatus(onStatus, 'loading', `Loading embeddings chunk ${i + 1}/${totalFiles}...`, progress);
-
-        const chunk = await fetchJson(withBase(`/embeddings/${fileName}`));
-        if (Array.isArray(chunk)) {
-            chunks.push(...chunk);
-        }
-
-        await new Promise((resolve) => setTimeout(resolve, 0));
-    }
-
-    return chunks;
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    return embeddingsData;
 }
 
 function reportSourceStatus(onStatus, state, message, progress = sourceProgress) {
@@ -115,7 +88,7 @@ export async function preloadSearchIndex(onStatus) {
 export async function searchWithQueries(queries) {
     const db = await getDatabase();
 
-    // Embed all 5 queries in parallel
+    // Embed all generated query variations in parallel
     const queryEmbeddings = await Promise.all(queries.map(embedText));
 
     // Search for each query and collect results

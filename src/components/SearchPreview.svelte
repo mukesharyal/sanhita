@@ -202,7 +202,7 @@
     return overlap + phraseBonus;
   }
 
-  async function resolveRelevantPage(pdfDoc, snippet, primaryPageNumber, windowSize = 5) {
+  async function resolveRelevantPage(pdfDoc, snippet, primaryPageNumber, windowSize = 3) {
     const seedPage = Number.isFinite(primaryPageNumber)
       ? Math.max(1, Math.min(pdfDoc.numPages, primaryPageNumber))
       : 1;
@@ -404,7 +404,7 @@
       score = Math.round((result.score || 0) * 100);
 
       const pdfDoc = await loadPdfDocument(resolvedFileName);
-      const highlightedPage = await resolveRelevantPage(pdfDoc, snippet, detectedPrimary, 5);
+      const highlightedPage = await resolveRelevantPage(pdfDoc, snippet, detectedPrimary, 3);
       primaryPage = highlightedPage;
 
       const chapter = resolveChapter(matchedDoc, highlightedPage);

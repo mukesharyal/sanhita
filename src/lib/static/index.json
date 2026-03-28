@@ -166,5 +166,172 @@
             {"title": "Offence and Punishment", "pages": [167, 170], "description": "Defines tax-related criminal offences including tax evasion, filing false returns, and obstruction of tax administration, along with applicable fines and imprisonment penalties."},
             {"title": "Miscellaneous", "pages": [170, 194], "description": "Contains supplementary provisions including the establishment and powers of the Inland Revenue Department, taxpayer identification numbers, confidentiality of information, power to frame rules, and transitional arrangements."}
         ]
+    },
+    {
+        "name": "The National Penal (Code) Act, 2017",
+        "file": "penal_code.pdf",
+        "description": "A comprehensive criminal code enacted to amend and consolidate the laws relating to criminal offences in Nepal. It covers general provisions on criminal justice principles, punishment, and conspiracy in Part 1; a wide range of substantive criminal offences against the state, public order, persons, property, and morals in Part 2; and offences against individual privacy and prestige in Part 3.",
+        "contents": [
+            {
+                "title": "Part-1, Chapter-1: Preliminary",
+                "pages": [1, 5],
+                "description": "Provides the short title, commencement, and foundational definitions used throughout the Code, including offence, punishment, person, public servant, and related terms."
+            },
+            {
+                "title": "Part-1, Chapter-2: General Principles of Criminal Justice",
+                "pages": [6, 15],
+                "description": "Establishes core principles of criminal liability including the requirement that no act required by law is an offence, the doctrine of mens rea, general exceptions such as self-defence, necessity, consent, mistake of fact, acts of minors and persons of unsound mind, and other circumstances excluding criminal responsibility."
+            },
+            {
+                "title": "Part-1, Chapter-3: Criminal Conspiracy, Attempt, Abetment and Accomplice",
+                "pages": [16, 19],
+                "description": "Defines and penalises criminal conspiracy, attempt to commit offences, abetment of offences, and the liability of accomplices, including rules on how punishment is apportioned among co-offenders."
+            },
+            {
+                "title": "Part-1, Chapter-4: Gravity of Offence — Aggravating and Mitigating Factors",
+                "pages": [20, 23],
+                "description": "Sets out the factors that courts must consider in determining the gravity of an offence, including aggravating circumstances that increase punishment and mitigating circumstances that may reduce it."
+            },
+            {
+                "title": "Part-1, Chapter-5: Provisions Relating to Punishment and Interim Relief",
+                "pages": [24, 30],
+                "description": "Defines the types of punishments applicable under the Code (imprisonment, fines, forfeiture, etc.), rules for sentencing, concurrent and consecutive sentences, conversion of punishment, and provisions for interim relief to victims pending final judgment."
+            },
+            {
+                "title": "Part-2, Chapter-1: Offences against the State",
+                "pages": [31, 42],
+                "description": "Criminalises acts against Nepal's sovereignty, territorial integrity, and constitutional order, including treason, waging war against the state, espionage, sedition, and offences relating to national security and armed forces."
+            },
+            {
+                "title": "Part-2, Chapter-2: Offences against Public Tranquility",
+                "pages": [43, 50],
+                "description": "Covers offences that disturb public order and peace, including unlawful assembly, rioting, affray, incitement to violence, and acts promoting enmity or hatred among communities."
+            },
+            {
+                "title": "Part-2, Chapter-3: Offences Relating to Contempt of Authority of Public Servants",
+                "pages": [51, 64],
+                "description": "Defines offences involving obstruction, assault, or use of criminal force against public servants, disobedience of lawful orders, escape from custody, giving false information to authorities, and offences relating to evidence and court proceedings."
+            },
+            {
+                "title": "Part-2, Chapter-5: Offences against Public Interest, Health, Safety, Convenience and Morals",
+                "pages": [65, 78],
+                "description": "Criminalises acts harmful to the public at large, including adulteration of food and drugs, public nuisance, obscenity, gambling, offences relating to public health and safety, and immoral trafficking."
+            },
+            {
+                "title": "Part-2, Chapter-6: Offences Relating to Arms and Ammunitions",
+                "pages": [79, 84],
+                "description": "Prohibits the unlicensed possession, manufacture, sale, and use of arms, ammunition, and other weapons, and prescribes penalties for violations."
+            },
+            {
+                "title": "Part-2, Chapter-7: Offences Relating to Explosives",
+                "pages": [85, 90],
+                "description": "Covers offences involving the unlawful manufacture, possession, use, transport, and sale of explosive substances, and offences causing harm or damage through explosives."
+            },
+            {
+                "title": "Part-2, Chapter-8: Offences against National and Public Heritages",
+                "pages": [91, 97],
+                "description": "Protects national heritage, archaeological sites, monuments, and public property from damage, destruction, theft, and illegal export."
+            },
+            {
+                "title": "Part-2, Chapter-9: Offences Relating to Religion",
+                "pages": [98, 106],
+                "description": "Penalises acts that offend religious sentiments, desecrate places of worship or religious objects, disturb religious assemblies, and promote religious hatred or enmity."
+            },
+            {
+                "title": "Part-2, Chapter-11: Offences Relating to Marriage",
+                "pages": [107, 110],
+                "description": "Defines criminal offences in the context of marriage, including bigamy, fraudulent marriage, child marriage, and offences relating to dowry and marital rights."
+            },
+            {
+                "title": "Part-2, Chapter-12: Offences Relating to Human Body",
+                "pages": [111, 116],
+                "description": "Covers offences including murder, culpable homicide, infanticide, causing death by negligence, and other offences resulting in the unlawful taking of human life."
+            },
+            {
+                "title": "Part-2, Chapter-13: Offences against Protection of Pregnancy",
+                "pages": [117, 120],
+                "description": "Addresses criminal liability for unlawful abortion and other offences relating to the protection of pregnancy, including the conditions under which termination is lawful."
+            },
+            {
+                "title": "Part-2, Chapter-14: Offences Relating to Hurt or Grievous Hurt",
+                "pages": [121, 127],
+                "description": "Defines and penalises causing hurt and grievous hurt to a person, including acid attacks, torture, and acts causing permanent disfigurement or disability."
+            },
+            {
+                "title": "Part-2, Chapter-15: Offences Relating to Unlawful Detention",
+                "pages": [128, 129],
+                "description": "Penalises the wrongful confinement and unlawful deprivation of liberty of any person."
+            },
+            {
+                "title": "Part-2, Chapter-16: Offences Relating to Enforced Disappearance",
+                "pages": [130, 133],
+                "description": "Criminalises enforced disappearance by state or non-state actors, consistent with international human rights obligations, and defines penalties and accountability mechanisms."
+            },
+            {
+                "title": "Part-2, Chapter-17: Offences Relating to Kidnapping or Taking of Hostages",
+                "pages": [134, 137],
+                "description": "Defines the offences of kidnapping, abduction, and hostage-taking, along with aggravated forms involving ransom demands or harm to victims."
+            },
+            {
+                "title": "Part-2, Chapter-18: Sexual Offences",
+                "pages": [138, 147],
+                "description": "Criminalises rape, sexual assault, sexual harassment, trafficking for sexual exploitation, and other sexual offences, including aggravated circumstances and protections for victims."
+            },
+            {
+                "title": "Part-2, Chapter-19: Offence Relating to Medical Treatment",
+                "pages": [148, 154],
+                "description": "Defines offences by medical professionals and facilities, including negligent medical treatment, performing procedures without consent, and fraudulent medical practice."
+            },
+            {
+                "title": "Part-2, Chapter-20: Offences Relating to Theft and Robbery",
+                "pages": [155, 159],
+                "description": "Covers theft, robbery, dacoity, and other property offences involving the taking of another's property, with graduated penalties based on the nature and value of the offence."
+            },
+            {
+                "title": "Part-2, Chapter-21: Offences Relating to Cheating, Criminal Breach of Trust and Extortion",
+                "pages": [160, 166],
+                "description": "Defines cheating, criminal breach of trust, misappropriation of property, and extortion, including offences by persons in positions of fiduciary responsibility."
+            },
+            {
+                "title": "Part-2, Chapter-22: Offences Relating to Currency",
+                "pages": [167, 171],
+                "description": "Penalises counterfeiting, forgery, and unlawful dealing in currency notes and coins."
+            },
+            {
+                "title": "Part-2, Chapter-23: Offences Relating to Stamps",
+                "pages": [172, 173],
+                "description": "Covers forgery and fraudulent use of government stamps and stamp papers."
+            },
+            {
+                "title": "Part-2, Chapter-24: Offences Relating to Weights and Measures",
+                "pages": [174, 175],
+                "description": "Penalises the use of false weights and measures in commercial transactions."
+            },
+            {
+                "title": "Part-2, Chapter-25: Offences Relating to Documents",
+                "pages": [176, 181],
+                "description": "Covers forgery of documents, using forged documents, fraudulent execution of deeds, and offences relating to the falsification of records and certificates."
+            },
+            {
+                "title": "Part-2, Chapter-26: Offences Relating to Criminal Trespass and Criminal Mischief",
+                "pages": [182, 187],
+                "description": "Defines criminal trespass, house-breaking, and criminal mischief including intentional damage to or destruction of property belonging to others."
+            },
+            {
+                "title": "Part-2, Chapter-27: Offences Relating to Animals and Birds",
+                "pages": [188, 190],
+                "description": "Covers offences relating to cruelty to animals, unlawful killing or harm to protected species, and illegal trade in wildlife."
+            },
+            {
+                "title": "Part-3, Chapter-1: Offences against Privacy",
+                "pages": [191, 195],
+                "description": "Criminalises violations of individual privacy including unlawful surveillance, interception of communications, unauthorised recording or publication of private information, and voyeurism."
+            },
+            {
+                "title": "Part-3, Chapter-2: Offence Relating to Defamation",
+                "pages": [196, 200],
+                "description": "Defines the criminal offence of defamation, distinguishing libel and slander, specifying defences available, and prescribing penalties for damaging the reputation of individuals."
+            }
+        ]
     }
 ]
