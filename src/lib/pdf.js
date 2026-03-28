@@ -1,10 +1,5 @@
 import * as pdfjsLib from "pdfjs-dist";
 import documentIndex from "$lib/static/index.json";
-import constitutionPdfUrl from "$lib/static/constitution.pdf?url";
-import civilCodePdfUrl from "$lib/static/civil_code.pdf?url";
-import criminalActPdfUrl from "$lib/static/criminal_act.pdf?url";
-import electronicTransactionsActPdfUrl from "$lib/static/electronic_transactions_act.pdf?url";
-import incomeTaxPdfUrl from "$lib/static/income_tax.pdf?url";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -17,13 +12,22 @@ const PDF_FILE_ALIASES = {
     "income_tax_act.pdf": "income_tax.pdf",
 };
 
-const PDF_URL_BY_FILE = {
-    "constitution.pdf": constitutionPdfUrl,
-    "civil_code.pdf": civilCodePdfUrl,
-    "criminal_act.pdf": criminalActPdfUrl,
-    "electronic_transactions_act.pdf": electronicTransactionsActPdfUrl,
-    "income_tax.pdf": incomeTaxPdfUrl,
-};
+const PDF_URL_MODULES = import.meta.glob("./static/*.pdf", {
+    eager: true,
+    import: "default",
+    query: "?url",
+});
+
+const PDF_URL_BY_FILE = Object.fromEntries(
+    Object.entries(PDF_URL_MODULES).map(([path, url]) => {
+        const fileName = path.split("/").pop()?.toLowerCase();
+        return [fileName, url];
+    }).filter(([fileName, url]) => Boolean(fileName && typeof url === "string"))
+);
+
+const DEFAULT_FALLBACK_PDF = PDF_URL_BY_FILE["constitution.pdf"]
+    ? "constitution.pdf"
+    : Object.keys(PDF_URL_BY_FILE)[0] || "constitution.pdf";
 
 const KNOWN_PDF_FILES = new Set([
     ...Object.keys(PDF_URL_BY_FILE),
@@ -49,7 +53,7 @@ function normalizePdfFileName(fileName) {
 }
 
 export function resolvePdfFileName(fileName, fallback = "constitution.pdf") {
-    const normalizedFallback = normalizePdfFileName(fallback) || "constitution.pdf";
+    const normalizedFallback = normalizePdfFileName(fallback) || DEFAULT_FALLBACK_PDF;
     const candidate = normalizePdfFileName(fileName);
 
     if (!candidate) {
@@ -69,7 +73,7 @@ export function resolvePdfFileName(fileName, fallback = "constitution.pdf") {
 
 export function getPdfUrl(fileName, fallback = "constitution.pdf") {
     const safeFileName = resolvePdfFileName(fileName, fallback);
-    return PDF_URL_BY_FILE[safeFileName] || PDF_URL_BY_FILE["constitution.pdf"];
+    return PDF_URL_BY_FILE[safeFileName] || PDF_URL_BY_FILE[DEFAULT_FALLBACK_PDF];
 }
 
 export async function loadPDF() {
