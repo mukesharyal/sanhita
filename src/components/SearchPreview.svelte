@@ -20,6 +20,7 @@
   let score = 0;
   let chapterTitle = 'Relevant Chapter';
   let chapterRange = 'N/A';
+  let flowLabel = 'Semantic Search';
   let renderedPages = [];
   let renderProgress = 0;
   let totalPages = 0;
@@ -175,6 +176,66 @@
     return [Math.max(1, Math.min(numPages, fallback))];
   }
 
+  function pickQueryTokens(snippet) {
+    return Array.from(new Set(
+      normalizeText(snippet)
+        .split(' ')
+        .filter((token) => token.length > 4)
+    )).slice(0, 70);
+  }
+
+  function scorePageText(pageText, queryTokens, snippetNeedle) {
+    if (!pageText) return 0;
+    const pageTokens = new Set(
+      normalizeText(pageText)
+        .split(' ')
+        .filter((token) => token.length > 4)
+    );
+
+    let overlap = 0;
+    for (const token of queryTokens) {
+      if (pageTokens.has(token)) overlap += 1;
+    }
+
+    // Small bonus when a contiguous excerpt slice appears in page text.
+    const phraseBonus = snippetNeedle && normalizeText(pageText).includes(snippetNeedle) ? 8 : 0;
+    return overlap + phraseBonus;
+  }
+
+  async function resolveRelevantPage(pdfDoc, snippet, primaryPageNumber, windowSize = 5) {
+    const seedPage = Number.isFinite(primaryPageNumber)
+      ? Math.max(1, Math.min(pdfDoc.numPages, primaryPageNumber))
+      : 1;
+
+    const queryTokens = pickQueryTokens(snippet);
+    if (queryTokens.length === 0) return seedPage;
+
+    const normalizedSnippet = normalizeText(snippet);
+    const snippetNeedle = normalizedSnippet.length > 24
+      ? normalizedSnippet.slice(0, 120)
+      : normalizedSnippet;
+
+    const start = Math.max(1, seedPage - windowSize);
+    const end = Math.min(pdfDoc.numPages, seedPage + windowSize);
+
+    let bestPage = seedPage;
+    let bestScore = -1;
+
+    for (let pageNumber = start; pageNumber <= end; pageNumber += 1) {
+      const page = await pdfDoc.getPage(pageNumber);
+      const textContent = await page.getTextContent();
+      const pageText = textContent.items.map((item) => item.str).join(' ');
+      const score = scorePageText(pageText, queryTokens, snippetNeedle);
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestPage = pageNumber;
+      }
+    }
+
+    return bestPage;
+  }
+
   async function loadPdfDocument(fileName) {
     const pdfUrl = getPdfUrl(fileName, 'constitution.pdf');
     return pdfjsLib.getDocument(pdfUrl).promise;
@@ -326,21 +387,28 @@
 
     try {
       const metadata = parseMetadata(result.document.metadata);
+      const snippet = result.document.text || '';
       const source = metadata.source || '';
       const fileNameFromSource = resolvePdfFileName(source, 'constitution.pdf');
-      const snippet = result.document.text || '';
       const detectedPrimary = Number(metadata.primary_page);
+      const isFallbackResult = metadata.retrieval_mode === 'fallback';
+      const isSemanticResult = !isFallbackResult;
+      flowLabel = isFallbackResult ? 'LLM Fallback' : 'Semantic Search';
 
       const matchedDoc = resolveDocumentEntry(source, fileNameFromSource, detectedPrimary);
-      const resolvedFileName = resolvePdfFileName(matchedDoc?.file || fileNameFromSource, 'constitution.pdf');
+      const resolvedFileName = isSemanticResult
+        ? resolvePdfFileName(fileNameFromSource, 'constitution.pdf')
+        : resolvePdfFileName(matchedDoc?.file || fileNameFromSource, 'constitution.pdf');
 
       sourceLabel = formatSourceLabel(resolvedFileName);
-      primaryPage = Number.isFinite(detectedPrimary) ? detectedPrimary : 'N/A';
       score = Math.round((result.score || 0) * 100);
 
       const pdfDoc = await loadPdfDocument(resolvedFileName);
-      const chapter = resolveChapter(matchedDoc, detectedPrimary);
-      const pages = buildChapterPageList(chapter, detectedPrimary, pdfDoc.numPages);
+      const highlightedPage = await resolveRelevantPage(pdfDoc, snippet, detectedPrimary, 5);
+      primaryPage = highlightedPage;
+
+      const chapter = resolveChapter(matchedDoc, highlightedPage);
+      const pages = buildChapterPageList(chapter, highlightedPage, pdfDoc.numPages);
       totalPages = pages.length;
       chapterTitle = chapter?.title || 'Relevant Section';
       chapterRange = chapter?.pages?.length === 2 ? `${chapter.pages[0]}-${chapter.pages[1]}` : 'N/A';
@@ -358,17 +426,7 @@
 
         await page.render({ canvasContext: context, viewport }).promise;
 
-        const textContent = await page.getTextContent();
-        let highlights = [];
-        if (Number.isFinite(detectedPrimary) && pageNumber === detectedPrimary) {
-          highlights = fullPageHighlight(viewport);
-        } else {
-          const metadataRects = getMetadataHighlightsForPage(metadata, pageNumber, viewport);
-          const snippetRects = buildHighlightRects(viewport, textContent.items, snippet);
-          if (metadataRects.length > 0 || snippetRects.length > 0) {
-            highlights = [];
-          }
-        }
+        const highlights = pageNumber === highlightedPage ? fullPageHighlight(viewport) : [];
 
         pageViews.push({
           pageNumber,
@@ -382,9 +440,7 @@
         renderProgress = idx + 1;
       }
 
-      if (Number.isFinite(detectedPrimary)) {
-        pendingScrollPage = detectedPrimary;
-      }
+      pendingScrollPage = highlightedPage;
     } catch (renderError) {
       console.error(renderError);
       error = 'Could not load PDF preview for this result.';
@@ -413,6 +469,7 @@
     <div class="modal-header">
       <div>
         <p class="meta-line">{sourceLabel}</p>
+        <p class="flow-tag">{flowLabel}</p>
         <p class="meta-subline">Chapter: {chapterTitle} (pp. {chapterRange})</p>
         <p class="meta-subline">Primary page: {primaryPage} · Relevance: {score}%</p>
       </div>
@@ -487,6 +544,20 @@
     margin: 4px 0 0;
     color: #9c8a62;
     font-size: 0.85rem;
+  }
+
+  .flow-tag {
+    margin: 6px 0 0;
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #efe0bd;
+    border: 1px solid rgba(180, 140, 60, 0.35);
+    background: rgba(180, 140, 60, 0.12);
+    border-radius: 999px;
+    padding: 2px 8px;
   }
 
   .close-button {

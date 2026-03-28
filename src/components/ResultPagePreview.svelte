@@ -17,6 +17,8 @@
   let sourceLabel = 'Unknown';
   let pageNumber = 'N/A';
   let previewImage = '';
+  let flowLabel = 'Semantic Search';
+  let lastRenderedKey = '';
 
   function parseMetadata(metadataString) {
     try {
@@ -33,18 +35,33 @@
       .replace(/\b\w/g, (c) => c.toUpperCase());
   }
 
+  function buildRenderKey(metadata, fileName, detectedPage) {
+    return [
+      result?.id || '',
+      metadata?.retrieval_mode || '',
+      fileName || '',
+      Number.isFinite(detectedPage) ? detectedPage : 'n/a'
+    ].join('|');
+  }
+
   async function renderPreview() {
     if (!result?.document) return;
-
-    loading = true;
-    error = '';
-    previewImage = '';
 
     try {
       const metadata = parseMetadata(result.document.metadata);
       const source = metadata.source || '';
       const fileName = resolvePdfFileName(source, 'constitution.pdf');
       const detectedPage = Number(metadata.primary_page);
+      const renderKey = buildRenderKey(metadata, fileName, detectedPage);
+
+      if (renderKey === lastRenderedKey && previewImage && !error) {
+        return;
+      }
+
+      loading = true;
+      error = '';
+      previewImage = '';
+      flowLabel = metadata.retrieval_mode === 'fallback' ? 'LLM Fallback' : 'Semantic Search';
 
       sourceLabel = formatSourceLabel(fileName);
 
@@ -70,6 +87,7 @@
 
       await page.render({ canvasContext: context, viewport }).promise;
       previewImage = canvas.toDataURL('image/png');
+      lastRenderedKey = renderKey;
     } catch (renderError) {
       console.error(renderError);
       error = 'Could not load page preview.';
@@ -91,6 +109,7 @@
   <div class="inline-preview-header">
     <p class="inline-preview-label">Relevant Page Preview</p>
     <p class="inline-preview-meta">{sourceLabel} · Page {pageNumber}</p>
+    <p class="flow-tag">{flowLabel}</p>
   </div>
 
   {#if loading}
@@ -133,6 +152,20 @@
     margin: 5px 0 0;
     color: #9c8a62;
     font-size: 0.82rem;
+  }
+
+  .flow-tag {
+    margin: 6px 0 0;
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #efe0bd;
+    border: 1px solid rgba(180, 140, 60, 0.35);
+    background: rgba(180, 140, 60, 0.12);
+    border-radius: 999px;
+    padding: 2px 8px;
   }
 
   .inline-preview-state {

@@ -11,6 +11,125 @@ const groq = new Groq({
 
 const MODEL = "llama-3.3-70b-versatile";
 
+const DEBUG_PIPELINE = true;
+
+function createTraceId() {
+    return `trace-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function truncate(value, max = 220) {
+    const text = typeof value === "string" ? value : JSON.stringify(value);
+    if (!text) return "";
+    return text.length > max ? `${text.slice(0, max)}...` : text;
+}
+
+function debugSection(traceId, title, details = null) {
+    if (!DEBUG_PIPELINE) return;
+    console.group(`[Sanhita Pipeline][${traceId}] ${title}`);
+    if (details !== null) {
+        if (typeof details === "string") {
+            console.log(details);
+        } else {
+            console.log(details);
+        }
+    }
+    console.groupEnd();
+}
+
+function debugTable(traceId, title, rows) {
+    if (!DEBUG_PIPELINE) return;
+    console.group(`[Sanhita Pipeline][${traceId}] ${title}`);
+    if (Array.isArray(rows) && rows.length > 0) {
+        console.table(rows);
+    } else {
+        console.log("(no rows)");
+    }
+    console.groupEnd();
+}
+
+function debugLLMExchange(traceId, stepLabel, prompt, response) {
+    if (!DEBUG_PIPELINE) return;
+    console.groupCollapsed(`[Sanhita Pipeline][${traceId}] ${stepLabel} - LLM Exchange`);
+    console.log("Prompt length:", (prompt || "").length);
+    console.log("Prompt sent to LLM:\n", prompt || "");
+    console.log("Response length:", (response || "").length);
+    console.log("Response from LLM:\n", response || "");
+    console.groupEnd();
+}
+
+function tokenizeForMatch(text) {
+    return (text || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, " ")
+        .split(/\s+/)
+        .filter((token) => token.length > 3);
+}
+
+function overlapScore(candidateText, referenceText) {
+    const candidateTokens = tokenizeForMatch(candidateText);
+    const referenceTokens = tokenizeForMatch(referenceText);
+    if (candidateTokens.length === 0 || referenceTokens.length === 0) return 0;
+
+    const candidateSet = new Set(candidateTokens);
+    let hits = 0;
+    for (const token of referenceTokens) {
+        if (candidateSet.has(token)) hits += 1;
+    }
+    return hits;
+}
+
+function pickBestSemanticSupport(answer, searchResults) {
+    const hits = Array.isArray(searchResults) ? searchResults : [];
+    let best = null;
+    let bestScore = -1;
+
+    for (const hit of hits) {
+        const text = hit?.document?.text || "";
+        const score = overlapScore(answer, text);
+        if (score > bestScore) {
+            bestScore = score;
+            best = hit;
+        }
+    }
+
+    if (!best) return null;
+    return {
+        snippet: truncate(best?.document?.text || "", 450),
+        metadata: parseJsonSafe(best?.document?.metadata, {}),
+        overlap: bestScore,
+    };
+}
+
+function pickBestFallbackSupport(answer, rawText) {
+    const text = rawText || "";
+    const segments = text
+        .split(/\n\n(?=\[Page\s+\d+\])/)
+        .map((segment) => segment.trim())
+        .filter(Boolean);
+
+    if (segments.length === 0) {
+        return {
+            snippet: truncate(text, 450),
+            overlap: 0,
+        };
+    }
+
+    let bestSegment = segments[0];
+    let bestScore = overlapScore(answer, bestSegment);
+    for (let i = 1; i < segments.length; i += 1) {
+        const score = overlapScore(answer, segments[i]);
+        if (score > bestScore) {
+            bestScore = score;
+            bestSegment = segments[i];
+        }
+    }
+
+    return {
+        snippet: truncate(bestSegment, 450),
+        overlap: bestScore,
+    };
+}
+
 async function chat(prompt) {
     const completion = await groq.chat.completions.create({
         messages: [{ role: "user", content: prompt }],
@@ -89,28 +208,73 @@ function buildFallbackPreviewResult(selectedDoc, selectedSection, rawText, resol
                 primary_page: primaryPage,
                 highlight_rects: [],
                 page_dimensions: {},
+                retrieval_mode: "fallback",
+            }),
+        },
+    };
+}
+
+function tagPreviewResultFlow(previewResult, mode) {
+    if (!previewResult?.document) return previewResult;
+
+    const parsed = parseJsonSafe(previewResult.document.metadata, {});
+    const metadata = parsed && typeof parsed === "object" ? parsed : {};
+
+    return {
+        ...previewResult,
+        document: {
+            ...previewResult.document,
+            metadata: JSON.stringify({
+                ...metadata,
+                retrieval_mode: mode,
             }),
         },
     };
 }
 
 export async function runPipeline(userQuery, onStatus) {
+    const traceId = createTraceId();
+    debugSection(traceId, "START", {
+        model: MODEL,
+        query: userQuery,
+    });
 
     // ── Step 1: Generate 5 query variations ──
     onStatus("processing", "Optimizing your query...");
-    const queries = JSON.parse(await chat(layerOnePrompt + userQuery));
+    const step1Prompt = layerOnePrompt + userQuery;
+    const queryGenerationRaw = await chat(step1Prompt);
+    debugLLMExchange(traceId, "STEP 1", step1Prompt, queryGenerationRaw);
+    debugSection(traceId, "STEP 1 - Query Variations (raw LLM output)", queryGenerationRaw);
+    const queries = JSON.parse(queryGenerationRaw);
+    debugTable(
+        traceId,
+        "STEP 1 - Query Variations (parsed)",
+        (Array.isArray(queries) ? queries : []).map((q, index) => ({
+            index,
+            query: q,
+        }))
+    );
 
     // ── Step 2: Semantic search across all 5 queries ──
     onStatus("searching", "Searching legal documents...");
     const searchResults = await searchWithQueries(queries);
-    console.log("Semantic search results (full):", searchResults);
-    searchResults.slice(0, 3).forEach((hit, idx) => {
-        console.log(`Result ${idx}:`, {
-            text: hit.document.text?.substring(0, 100),
-            score: hit.score,
-            metadata: hit.document.metadata,
-        });
+    debugSection(traceId, "STEP 2 - Semantic Search Summary", {
+        totalResults: searchResults.length,
     });
+    debugTable(
+        traceId,
+        "STEP 2 - Top Semantic Hits",
+        searchResults.slice(0, 5).map((hit, idx) => {
+            const parsedMetadata = parseJsonSafe(hit?.document?.metadata, {});
+            return {
+                rank: idx + 1,
+                score: Number(hit?.score || 0).toFixed(4),
+                source: parsedMetadata?.source || "unknown",
+                primaryPage: parsedMetadata?.primary_page || "n/a",
+                snippet: truncate(hit?.document?.text || "", 120),
+            };
+        })
+    );
     const topChunks = searchResults.slice(0, 5).map((hit) => hit.document.text);
 
     // ── Step 3: Try answering from semantic results ──
@@ -118,18 +282,46 @@ export async function runPipeline(userQuery, onStatus) {
     let finalAnswer = null;
     let usedFallback = false;
     let previewResult = searchResults[0] || null;
+    let supportingSnippet = null;
+    let supportingMetadata = null;
 
     if (topChunks.length > 0) {
-        const candidate = await chat(layerTwoPrompt(userQuery, topChunks));
+        const step3Prompt = layerTwoPrompt(userQuery, topChunks);
+        debugTable(
+            traceId,
+            "STEP 3 - Context Chunks Sent To LLM",
+            topChunks.map((chunk, index) => ({
+                index: index + 1,
+                length: (chunk || "").length,
+                chunk,
+            }))
+        );
+        const candidate = await chat(step3Prompt);
+        debugLLMExchange(traceId, "STEP 3", step3Prompt, candidate);
+        debugSection(traceId, "STEP 3 - Semantic Answer Candidate", {
+            verdict: candidate && !candidate.includes("INSUFFICIENT_CONTEXT") ? "accepted" : "insufficient_context",
+            preview: truncate(candidate, 400),
+        });
         if (candidate && !candidate.includes("INSUFFICIENT_CONTEXT")) {
             finalAnswer = candidate;
+            const semanticSupport = pickBestSemanticSupport(finalAnswer, searchResults);
+            supportingSnippet = semanticSupport?.snippet || null;
+            supportingMetadata = semanticSupport?.metadata || null;
+            debugSection(traceId, "STEP 3 - Semantic Supporting Snippet", {
+                overlapScore: semanticSupport?.overlap || 0,
+                snippet: supportingSnippet,
+                metadata: supportingMetadata,
+            });
         }
+    } else {
+        debugSection(traceId, "STEP 3 - Semantic Answer Candidate", "Skipped because no semantic chunks were returned.");
     }
 
     // ── Step 4: PDF fallback — only reached if semantic search failed ──
     if (!finalAnswer) {
         usedFallback = true;
         onStatus("extracting", "Selecting the most likely document and chapter...");
+        debugSection(traceId, "STEP 4 - Entering Fallback", "Semantic context was insufficient. Running document+section picker.");
 
         const docsForPrompt = documentIndex.map((doc) => ({
             name: doc.name,
@@ -138,11 +330,24 @@ export async function runPipeline(userQuery, onStatus) {
             contents: doc.contents || [],
         }));
 
-        const pickedDocSectionRaw = await chat(documentSectionPickerPrompt(userQuery, docsForPrompt));
+        const step4PickerPrompt = documentSectionPickerPrompt(userQuery, docsForPrompt);
+        const pickedDocSectionRaw = await chat(step4PickerPrompt);
+        debugLLMExchange(traceId, "STEP 4 (Document+Section Picker)", step4PickerPrompt, pickedDocSectionRaw);
+        debugSection(traceId, "STEP 4 - Fallback Picker (raw LLM output)", pickedDocSectionRaw);
         const { selectedDoc, selectedSection, alternateSection, confidence } = pickDocumentAndSection(pickedDocSectionRaw, documentIndex);
+        debugSection(traceId, "STEP 4 - Fallback Picker (parsed decision)", {
+            selectedDocument: selectedDoc?.name || "n/a",
+            selectedFile: selectedDoc?.file || "n/a",
+            selectedSection: selectedSection?.title || "n/a",
+            selectedPages: selectedSection?.pages || [],
+            alternateSection: alternateSection?.title || "n/a",
+            alternatePages: alternateSection?.pages || [],
+            confidence,
+        });
 
         if (!selectedDoc || !selectedSection) {
             finalAnswer = "The system could not find a relevant document section for your question.";
+            debugSection(traceId, "STEP 4 - Fallback Failed", finalAnswer);
         } else {
             const useAlternateSection = confidence < 0.6 && alternateSection && alternateSection.title !== selectedSection.title;
             const selectedLabel = useAlternateSection
@@ -156,22 +361,62 @@ export async function runPipeline(userQuery, onStatus) {
                 ? [selectedSection.pages, alternateSection.pages]
                 : [selectedSection.pages];
             const resolvedFileName = resolvePdfFileName(selectedDoc?.file, "constitution.pdf");
+            debugSection(traceId, "STEP 4 - Fallback Extraction Plan", {
+                useAlternateSection,
+                selectedLabel,
+                pageRanges,
+                resolvedFileName,
+            });
             const pdfDoc = await loadPDFByFile(resolvedFileName);
             const rawText = await extractPages(pdfDoc, pageRanges);
+            debugSection(traceId, "STEP 4 - Extracted Text Summary", {
+                characters: rawText.length,
+                preview: truncate(rawText, 300),
+            });
 
             previewResult = buildFallbackPreviewResult(selectedDoc, selectedSection, rawText, resolvedFileName) || previewResult;
 
             // Final LLM attempt with the extracted raw text
             onStatus("answering", "Generating answer from document text...");
-            const candidate = await chat(layerThreePrompt(userQuery, rawText));
+            const step5Prompt = layerThreePrompt(userQuery, rawText);
+            const candidate = await chat(step5Prompt);
+            debugLLMExchange(traceId, "STEP 5", step5Prompt, candidate);
+            debugSection(traceId, "STEP 5 - Fallback Answer Candidate", {
+                verdict: candidate && !candidate.includes("INSUFFICIENT_CONTEXT") ? "accepted" : "insufficient_context",
+                preview: truncate(candidate, 400),
+            });
 
             if (candidate && !candidate.includes("INSUFFICIENT_CONTEXT")) {
                 finalAnswer = candidate;
+                const fallbackSupport = pickBestFallbackSupport(finalAnswer, rawText);
+                supportingSnippet = fallbackSupport?.snippet || null;
+                supportingMetadata = {
+                    source: resolvedFileName,
+                    section: selectedSection?.title || "Unknown",
+                    pages: selectedSection?.pages || [],
+                    overlapScore: fallbackSupport?.overlap || 0,
+                };
+                debugSection(traceId, "STEP 5 - Fallback Supporting Snippet", {
+                    snippet: supportingSnippet,
+                    metadata: supportingMetadata,
+                });
             } else {
                 finalAnswer = "The answer could not be found in the selected chapter of the document.";
             }
         }
     }
+
+    if (!usedFallback && previewResult) {
+        previewResult = tagPreviewResultFlow(previewResult, "semantic");
+    }
+
+    debugSection(traceId, "END", {
+        usedFallback,
+        finalAnswerPreview: truncate(finalAnswer, 320),
+        previewFlow: parseJsonSafe(previewResult?.document?.metadata, {})?.retrieval_mode || "unknown",
+        supportingSnippet,
+        supportingMetadata,
+    });
 
     return { answer: finalAnswer, queries, usedFallback, searchResults, previewResult };
 }

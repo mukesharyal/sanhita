@@ -399,7 +399,7 @@
             </header>
 
             <section class="chat-thread" aria-live="polite">
-                {#each activeTurns as turn}
+                {#each activeTurns as turn (turn.id)}
                     <article class="chat-row user-row">
                         <div class="chat-avatar user-avatar">U</div>
                         <div class="chat-bubble user-bubble">{turn.query}</div>

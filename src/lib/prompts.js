@@ -14,23 +14,6 @@ Question: "${userQuery}"
 
 ${chunks.map((chunk, i) => `[${i + 1}] ${chunk}`).join("\n\n")}`;
 
-export const sectionPickerPrompt = (userQuery, sections) =>
-    `Pick the indices of sections most likely to answer this question: "${userQuery}"
-
-${sections.map((s, i) => `[${i}] ${s.title} (pp.${s.pages[0]}-${s.pages[1]}): ${s.description}`).join("\n")}
-
-Return ONLY a valid JSON array of integers. Example: [2,5,8]`;
-
-export const documentPickerPrompt = (userQuery, documents) =>
-    `Pick the SINGLE most likely document index that should be searched first for this legal question.
-
-Question: "${userQuery}"
-
-Documents:
-${documents.map((d, i) => `[${i}] ${d.name} (${d.file}): ${d.description}`).join("\n")}
-
-Return ONLY a valid JSON integer. Example: 2`;
-
 export const documentSectionPickerPrompt = (userQuery, documents) =>
     `You are selecting the BEST source location for a Nepali legal question.
 Pick exactly ONE document and exactly ONE section/chapter inside that document that is most likely to contain the answer.
